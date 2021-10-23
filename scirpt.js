@@ -36,9 +36,18 @@ function renderPlayer() {
 document.addEventListener('keyup', event => {
  if (event.code === 'Space') {
   offSetY += 2
-  playerElement.style.bottom = offSetY + "px"
+  playerElement.classList.add('player--jump')
   console.log('make player jump');
  }
+})
+
+playerElement.addEventListener('animationstart', () => {
+ console.log('started')
+})
+
+playerElement.addEventListener('animationend', () => {
+ console.log('ended')
+ playerElement.classList.remove('player--jump')
 })
 
 renderPlayer()
