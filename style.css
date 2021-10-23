@@ -1,0 +1,15 @@
+#canvas {
+  display: block;
+  background-color: #333;
+  width: 400px;
+  height: 400px;
+  position: relative;
+}
+
+.block {
+  color: white;
+}
+
+#player {
+  color: lightyellow;
+}
