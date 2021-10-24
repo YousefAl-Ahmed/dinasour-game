@@ -18,6 +18,10 @@
   animation: jump 0.75s;
 }
 
+.slide {
+  animation: block-slide 4s;
+}
+
 @keyframes jump {
   0% {
     transform: translateY(0px);
@@ -29,5 +33,11 @@
 
   100% {
     transform: translateY(0px);
+  }
+}
+
+@keyframes block-slide {
+  100% {
+    transform: translateX(-300px);
   }
 }
