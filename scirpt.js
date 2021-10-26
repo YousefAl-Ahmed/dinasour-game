@@ -1,11 +1,10 @@
 const canvas = document.querySelector('#canvas')
 
 class Block {
- constructor(height, width, x, y) {
-  this.height = height
+ constructor(width, height) {
   this.width = width
-  this.x = x
-  this.y = y
+  this.height = height
+  this.element = document.createElement("div")
  }
 }
 
@@ -14,41 +13,52 @@ class Player {
   this.width = width
   this.height = height
   this.jump = jump
+  this.element = document.createElement("div")
  }
 }
 
-let player = new Player(20, 20, 40)
+let player = new Player(5, 20, 40)
+let block = new Block(10, 20)
 let offSetY = 0
-const playerElement = document.createElement("div")
+
 function renderPlayer() {
- playerElement.style.width = player.width + "px"
- playerElement.style.height = player.height + "px"
- // playerElement.textContent = "HI"
- playerElement.style.display = "block"
- playerElement.style.position = "absolute"
- playerElement.style.bottom = offSetY + "px"
- playerElement.style.left = "2px"
- playerElement.style.backgroundColor = "lightblue"
- console.log(playerElement)
- canvas.appendChild(playerElement)
+ player.element.style.width = player.width + "px"
+ player.element.style.height = player.height + "px"
+ player.element.classList.add('player')
+ canvas.appendChild(player.element)
+}
+
+function renderBlock() {
+ block.element.style.width = block.width + "px"
+ block.element.style.height = block.height + "px"
+ block.element.classList.add('block')
+ canvas.appendChild(block.element)
 }
 
 document.addEventListener('keyup', event => {
  if (event.code === 'Space') {
-  offSetY += 2
-  playerElement.classList.add('player--jump')
+  player.element.classList.add('player--jump')
   console.log('make player jump');
  }
 })
 
-playerElement.addEventListener('animationstart', () => {
+player.element.addEventListener('animationstart', () => {
  console.log('started')
 })
 
-playerElement.addEventListener('animationend', () => {
+player.element.addEventListener('animationend', () => {
  console.log('ended')
- playerElement.classList.remove('player--jump')
+ player.element.classList.remove('player--jump')
 })
 
+
+// set alive to check if dinasour is still alive
+let isAlive = setInterval(function () {
+ let dinoTop = player.element.getClientRects()[0].top
+ console.log(dinoTop)
+}, 10)
+
+
 renderPlayer()
+renderBlock()
 
