@@ -1,21 +1,31 @@
 #canvas {
   display: block;
   background-color: #333;
-  width: 400px;
+  width: 500px;
   height: 400px;
   position: relative;
+  /* center canvas */
+  margin: auto;
 }
 
 .block {
-  color: white;
+  background-color: azure;
+  position: absolute;
+  bottom: 0;
+  right: 3px;
+  animation: slide 2.5s linear infinite;
 }
 
-#player {
+.player {
   color: lightyellow;
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  background-color: lightblue;
 }
 
 .player--jump {
-  animation: jump 0.75s;
+  animation: jump 0.3s linear;
 }
 
 .slide {
@@ -36,8 +46,11 @@
   }
 }
 
-@keyframes block-slide {
+@keyframes slide {
+  0% {
+    transform: translateX(3px);
+  }
   100% {
-    transform: translateX(-300px);
+    transform: translateX(-800px);
   }
 }
