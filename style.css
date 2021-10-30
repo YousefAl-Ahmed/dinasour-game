@@ -1,27 +1,25 @@
 #canvas {
   display: block;
-  background-color: #333;
+  background-color: #fff;
+  border: 2px solid black;
   width: 500px;
   height: 400px;
   position: relative;
-  /* center canvas */
-  margin: auto;
+  margin: auto; /* center canvas */
 }
 
-.block {
-  background-color: azure;
+.cactus {
+  background-color: #666666;
   position: absolute;
   bottom: 0;
   right: 3px;
-  animation: slide 2.5s linear infinite;
 }
 
 .player {
-  color: lightyellow;
   position: absolute;
   bottom: 0;
-  left: 2px;
-  background-color: lightblue;
+  left: 30px;
+  background-color: #333;
 }
 
 .player--jump {
@@ -29,7 +27,11 @@
 }
 
 .slide {
-  animation: block-slide 4s;
+  animation: slide 2.5s linear infinite;
+}
+
+.pause {
+  animation-play-state: paused;
 }
 
 @keyframes jump {
