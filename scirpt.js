@@ -73,7 +73,7 @@ document.addEventListener('keyup', event => {
  }
 })
 
-// function to check game state every 100ms 
+// function to check game state, will run every 100ms 
 setInterval(function () {
  let dinoRect = player.element.getBoundingClientRect()         // get size of elment and position relative to viewport
  let cactusRect = cactus.element.getBoundingClientRect()      // get size of elment and position relative to viewport
@@ -109,6 +109,6 @@ function startGame() {
 }
 
 // function when player hit cactus
-function gameOver() {}
+function gameOver() { }
 
 startGame()
