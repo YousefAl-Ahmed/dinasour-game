@@ -1,7 +1,5 @@
 # Simplified version of Dinosaur Game
 
----
-
 This is a recreate of chrome famous dinosaur game for educational purposes.
 
 ## Knowledge Needed to Build the game
