@@ -34,6 +34,7 @@
   animation-play-state: paused;
 }
 
+/* animation for player jump */
 @keyframes jump {
   0% {
     transform: translateY(0px);
@@ -48,6 +49,7 @@
   }
 }
 
+/* animation for cactus slide */
 @keyframes slide {
   0% {
     transform: translateX(3px);
