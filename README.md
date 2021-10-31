@@ -25,4 +25,4 @@ This is a recreate of chrome famous dinosaur game for educational purposes.
 4. Create a branch name similar to task name (example: generate_new_cactus)
 5. Make your changes
 6. Create a pull request
-7. I will merge it with master branch
+7. I will review it then merge with the master branch
