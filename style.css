@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 #canvas {
   display: block;
   background-color: #fff;
@@ -13,6 +18,7 @@
   position: absolute;
   bottom: 0;
   right: 3px;
+  background: url("./assets/cactus.png");
 }
 
 .player {
@@ -20,6 +26,9 @@
   bottom: 0;
   left: 30px;
   background-color: #333;
+  background: url("./assets/player.png");
+  background-repeat: no-repeat;
+  z-index: 100;
 }
 
 .player--jump {
@@ -27,7 +36,15 @@
 }
 
 .slide {
-  animation: slide 2.5s linear infinite;
+  animation: slide 2s linear infinite;
+}
+
+.cactus--outside {
+  opacity: 0;
+}
+
+.cactus--inside {
+  opacity: 1;
 }
 
 .pause {
@@ -41,7 +58,7 @@
   }
 
   50% {
-    transform: translateY(-40px);
+    transform: translateY(-80px);
   }
 
   100% {

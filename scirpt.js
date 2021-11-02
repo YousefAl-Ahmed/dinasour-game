@@ -1,39 +1,36 @@
 // select HTML Canvas
 const canvas = document.querySelector('#canvas')
 // variables 
-let isDinoRunning = true
+let isPlayerRunning = true
 let player
 let cactus
 let score = 0
-
-// array to choose random cactus to render
-let cactuses = [
- singleCactus = {
-  width: 20,
-  height: 20,
-  img: "img1",
- },
- doubleCactus = {
-  width: 30,
-  height: 20,
-  img: "img2",
- }
-]
+let count = 0
+let isGameOver = false
+// player image width = 43, height = 47
+const PLAYER_WIDTH = 43
+const PLAYER_HEIGHT = 47
+const CACTUS_WIDTH = 17
+const CACTUS_HEIGHT = 35
 
 // Cactus class to create cactus object
 class Cactus {
- constructor(width, height) {
+ constructor(width, height, hitboxWidth, hitboxHeight) {
   this.width = width
   this.height = height
+  this.hitboxWidth = hitboxWidth
+  this.hitboxHeight = hitboxHeight
   this.element;   // DOM Element
  }
 }
 
 // Player class to create cactus object
 class Player {
- constructor(width, height) {
+ constructor(width, height, hitboxWidth, hitboxHeight) {
   this.width = width
   this.height = height
+  this.hitboxWidth = hitboxWidth
+  this.hitboxHeight = hitboxHeight
   this.element;   // DOM Element
  }
 }
@@ -62,7 +59,7 @@ function renderCactus() {
  cactus.element = document.createElement("div")
  cactus.element.style.width = cactus.width + "px"
  cactus.element.style.height = cactus.height + "px"
- cactus.element.classList.add('cactus', 'slide')
+ cactus.element.classList.add('cactus', 'slide', 'cactus--inside')
  canvas.appendChild(cactus.element)
 }
 
@@ -75,25 +72,44 @@ document.addEventListener('keyup', event => {
 
 // function to check game state, will run every 100ms 
 setInterval(function () {
- let dinoRect = player.element.getBoundingClientRect()         // get size of elment and position relative to viewport
- let cactusRect = cactus.element.getBoundingClientRect()      // get size of elment and position relative to viewport
+ let playerRectangle = player.element.getBoundingClientRect()         // get size of elment and position relative to viewport
+ let cactusRectangle = cactus.element.getBoundingClientRect()      // get size of elment and position relative to viewport
  let canvasRect = canvas.getBoundingClientRect()
  // collision detection 
  if (
-  dinoRect.x < cactusRect.x + cactusRect.width &&
-  dinoRect.x + dinoRect.width > cactusRect.x &&
-  dinoRect.y < cactusRect.y + dinoRect.height &&
-  dinoRect.y + dinoRect.height > cactusRect.y &&
-  isDinoRunning
+  playerRectangle.x < cactusRectangle.x + cactus.hitboxWidth &&
+  playerRectangle.x + player.hitboxWidth > cactusRectangle.x &&
+  playerRectangle.y < cactusRectangle.y + cactus.hitboxHeight &&
+  playerRectangle.y + player.hitboxHeight > cactusRectangle.y &&
+  isPlayerRunning
  ) {
-  isDinoRunning = false
+  isPlayerRunning = false
+  isGameOver = true
   console.log('collision happend pause game!!')
-
   cactus.element.classList.add('pause')  // add css class to paus cactus animation
  }
 
+ if (!isGameOver) {
+  score++
+  if (score % 100 == 0) {
+   console.log(score)
+  }
+ } else {
+  score = 0
+  console.log(score)
+ }
+
+
+
+
  // check if cactus outside canvas to generate a new one 
- if (cactusRect.x < canvasRect.x) { }
+ if (cactusRectangle.x < canvasRect.x) {
+  cactus.element.classList.remove('cactus--inside')
+  cactus.element.classList.add('cactus--outside')
+ } else {
+  cactus.element.classList.remove('cactus--outside')
+  cactus.element.classList.add('cactus--inside')
+ }
 }, 10)
 
 // function to generate random cactus
@@ -101,9 +117,9 @@ function generateRandomCactus() { }
 
 // start, restart game function
 function startGame() {
- isDinoRunning = true
- player = new Player(5, 20, 40)
- cactus = new Cactus(10, 20)
+ isPlayerRunning = true
+ player = new Player(PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_WIDTH - 5, PLAYER_HEIGHT - 5)
+ cactus = new Cactus(CACTUS_WIDTH, CACTUS_HEIGHT, CACTUS_WIDTH - 3, CACTUS_HEIGHT - 3)
  renderPlayer()
  renderCactus()
 }
