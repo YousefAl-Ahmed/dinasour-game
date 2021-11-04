@@ -1,5 +1,6 @@
 // select HTML Canvas
 const canvas = document.querySelector('#canvas')
+const scoreElement = document.querySelector("#score")
 // variables 
 let isPlayerRunning = true
 let player
@@ -91,18 +92,14 @@ setInterval(function () {
 
  if (!isGameOver) {
   score++
-  if (score % 100 == 0) {
-   console.log(score)
-  }
+  scoreDisplay = score
+  scoreElement.textContent = "score:  " + scoreDisplay
  } else {
   score = 0
   console.log(score)
  }
 
-
-
-
- // check if cactus outside canvas to generate a new one 
+ // check if cactus outside canvas to hide then to dispaly it again
  if (cactusRectangle.x < canvasRect.x) {
   cactus.element.classList.remove('cactus--inside')
   cactus.element.classList.add('cactus--outside')
@@ -111,9 +108,6 @@ setInterval(function () {
   cactus.element.classList.add('cactus--inside')
  }
 }, 10)
-
-// function to generate random cactus
-function generateRandomCactus() { }
 
 // start, restart game function
 function startGame() {
