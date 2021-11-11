@@ -13,9 +13,9 @@ This is a recreate of chrome famous dinosaur game for educational purposes.
 - [x] Detect Collision
 - [x] Add Event Listeners
 - [ ] Generate New Cactus (if the cactus outside canvas)
-- [ ] Display Score
+- [x] Display Score
 - [x] Load Game Assets (instead of colored rectangles)
-- [ ] Sound (Maybe)
+- [x] Sound (Maybe)
 
 ## Contribution Guidlines
 
