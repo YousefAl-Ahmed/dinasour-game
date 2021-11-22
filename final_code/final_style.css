@@ -7,7 +7,6 @@
 #canvas {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
   border: 2px solid black;
   width: 500px;
   height: 400px;
@@ -41,7 +40,6 @@
   position: absolute;
   bottom: 0;
   left: 30px;
-  background-color: #333;
   background: url("../assets/player.png");
   background-repeat: no-repeat;
   z-index: 100;

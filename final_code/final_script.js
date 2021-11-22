@@ -1,7 +1,8 @@
 // Select HTML DOM Elements
-const canvas = document.querySelector('#canvas')
-const scoreElement = document.querySelector("#score")
-const restartBtn = document.querySelector("#restart")
+const canvas = document.getElementById('canvas')
+const scoreElement = document.getElementById("score")
+const restartBtn = document.getElementById("restart")
+
 let jumpAudio = new Audio("../assets/jump-sound.mp3")
 let hitAudio = new Audio("../assets/hit-sound.mp3")
 // variables 
@@ -39,7 +40,7 @@ class Player {
 }
 
 // function to create Player DOM Element, add event listeners, and render it 
-function renderPlayer() {
+function renderPlayer(player) {
   // create DOM Element 
   player.element = document.createElement("div")
   // add width to playerDOM
@@ -61,7 +62,7 @@ function renderPlayer() {
 }
 
 // function to create Cactus DOM Element, and render it 
-function renderCactus() {
+function renderCactus(cactus) {
   cactus.element = document.createElement("div")
   cactus.element.style.width = cactus.width + "px"
   cactus.element.style.height = cactus.height + "px"
@@ -124,8 +125,8 @@ function startGame() {
   // is game over
   player = new Player(PLAYER_WIDTH, PLAYER_HEIGHT, PLAYER_WIDTH - 5, PLAYER_HEIGHT - 5)
   cactus = new Cactus(CACTUS_WIDTH, CACTUS_HEIGHT, CACTUS_WIDTH - 3, CACTUS_HEIGHT - 3)
-  renderPlayer()
-  renderCactus()
+  renderPlayer(player)
+  renderCactus(cactus)
   intervalID = gameLoop()
 }
 
